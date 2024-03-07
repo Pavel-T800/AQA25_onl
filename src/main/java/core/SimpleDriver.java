@@ -9,5 +9,6 @@ public class SimpleDriver {
         System.setProperty("webdriver.chrome.driver", "/Users/pavelsaz/Documents/JAVA/AQANewProject/AQA25_onl/src/test/resources/chromedriver");
 
         return new ChromeDriver();
+
     }
 }
