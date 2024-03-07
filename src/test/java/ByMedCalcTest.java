@@ -19,7 +19,7 @@ public class ByMedCalcTest {
     @Test
     public void validateSKF() throws InterruptedException {
         driver.get("https://bymed.top/calc/%D1%81%D0%BA%D1%84-2148");
-        Thread.sleep(10000); //
+        Thread.sleep(10000);
 
         //WebElement consentButton =  driver.findElement(By.xpath("//button[text()='Consent']"));
 
