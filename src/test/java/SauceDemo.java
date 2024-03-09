@@ -123,8 +123,71 @@ public class SauceDemo {
         // Поиск элемента с тэгом img и которым является n-ым дочерним элементом
         Assert.assertEquals(2, driver.findElements(By.cssSelector("img:nth-child(2)")).size());
 
+        // Абсолютный xpath
+        Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/div/div/div[2]/div[1]/a/img")).isDisplayed());
 
+        // Все эелемнты на странице начина с HTML
+        driver.findElements(By.xpath("//*"));
 
+        // Аналог поиска по tagName
+        Assert.assertFalse(driver.findElement(By.xpath("//a")).isDisplayed());
 
+        // Аналог родительского div и на один уровень ниже р1
+        Assert.assertTrue(driver.findElement(By.xpath("//div/a")).isDisplayed());
+
+        // Аналог родительского div и на любом уровене ниже a
+        Assert.assertFalse(driver.findElement(By.xpath("//div//a")).isDisplayed());
+
+        // Поиск элемента с тэгом div у которого есть аьттрибут id
+        Assert.assertTrue(driver.findElement(By.xpath("//div[@id]")).isDisplayed());
+
+        // Поиск элемента у которого есть аттрибут id cо значением inventory_container
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id = 'inventory_container']")).isDisplayed());
+
+        // Поиск элемента у которого значение аттрибута начинается с inventory
+        Assert.assertFalse(driver.findElement(By.xpath("//*[starts-with(@id, 'inventory')]")).isDisplayed());
+
+        // Поиск элемента у которого значение аттрибута содержит подстроку
+        Assert.assertTrue(driver.findElement(By.xpath("//div[contains(@id, 'button')]")).isDisplayed());
+
+        // Поиск элемента по индексу
+        Assert.assertTrue(driver.findElement(By.xpath("//div[@class = 'inventory_item_img']/a[1]")).isDisplayed());
+
+        //Поиск по аттрибуту
+        Assert.assertTrue(driver.findElement(By.xpath("//div[@class='page_wrapper']")).isDisplayed());
+
+        // Поиск по тексту
+        Assert.assertTrue(driver.findElement(By.xpath("//div[text()='Sauce Labs Backpack']")).isDisplayed());
+
+        //Поиск по по частичному совпадению тексту
+        Assert.assertTrue(driver.findElement(By.xpath("//div[contains(text(), 'with the sleek')]")).isDisplayed());
+
+        //Поиск по по частичному совпадению тексту
+        Assert.assertTrue(driver.findElement(By.xpath("//*[text()='Sauce Labs Backpack']//ancestor::div")).isDisplayed());
+
+        // Использование descendant - все дочерние элементы с тэго a от div
+        Assert.assertFalse(driver.findElement(By.xpath("//div/descendant::a")).isDisplayed());
+
+        //Использование parent
+        Assert.assertTrue(driver.findElement(By.xpath("//a/parent::div")).isDisplayed());
+
+        // Поиск всех предков с тэгом div у элемента с тэгом h1
+        Assert.assertTrue(driver.findElement(By.xpath("//div/ancestor::a")).isDisplayed());
+
+        // Использование child - все дочерние элементы с тэго a от div
+        Assert.assertTrue(driver.findElement(By.xpath("//div/a/span")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//div/child::img")).isDisplayed());
+
+        //Использование following - Выбирает всё в документе после закрытия тэга текущего узла
+        Assert.assertTrue(driver.findElement(By.xpath("//div/div[@class='inventory_item']/following::img")).isDisplayed());
+
+        //Использование following-sibling - Выбирает все узлы одного уровня после текущего узла
+        Assert.assertTrue(driver.findElement(By.xpath("//div/div[@class='inventory_item']/following-sibling::div")).isDisplayed());
+
+        //Использование preceding- Выбирает все узлы, которые появляются перед текущим узлом в документе
+        Assert.assertTrue(driver.findElement(By.xpath("//div/div[@class='inventory_item']/preceding::img")).isDisplayed());
+
+        //Использование preceding-sibling - Выбирает все узлы одного уровня до текущего узла
+        Assert.assertTrue(driver.findElement(By.xpath("//div/div[@class='inventory_item']/preceding-sibling::div")).isDisplayed());
     }
 }
