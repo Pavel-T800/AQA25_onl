@@ -21,8 +21,6 @@ public class ByMedCalcTest {
         driver.get("https://bymed.top/calc/%D1%81%D0%BA%D1%84-2148");
         Thread.sleep(10000);
 
-        //WebElement consentButton =  driver.findElement(By.xpath("//button[text()='Consent']"));
-
         driver.switchTo().frame(1);
         WebElement ageField = driver.findElement(By.id("age"));
         ageField.sendKeys("31");
@@ -41,7 +39,6 @@ public class ByMedCalcTest {
         Select raceDropdown = new Select(raceField);
         raceDropdown.selectByIndex(0); // 0 - Другая, 1 - Негроидная
 
-
         WebElement weightField = driver.findElement(By.id("mass"));
         weightField.sendKeys("73");
 
@@ -59,7 +56,6 @@ public class ByMedCalcTest {
         Assert.assertEquals(mdrdResult.getText().trim(), "91.19 мл/мин/1.73м2 - Нормальный уровень СКФ (C1)");
         Assert.assertEquals(ckdepiResult.getText().trim(), "104.7 мл/мин/1.73м2 - Нормальный уровень СКФ (C1)");
         Assert.assertEquals(cgeResult.getText().trim(), "114.94 мл/мин");
-
     }
 
     @AfterMethod

@@ -45,7 +45,7 @@ public class LaminateCalcTest {
         packingArea.clear();
         packingArea.sendKeys("30");
 
-        // 0 -  Укладка по длине 0°, 1 - Укладка по ширине 90°, 2 - Укладка по диагонали 45°, 3 - Укладка по диагонали 135°
+        //0 -  Укладка по длине 0°, 1 - Укладка по ширине 90°, 2 - Укладка по диагонали 45°, 3 - Укладка по диагонали 135°
         WebElement laminateLayingDirection = driver.findElement(By.id("direction-laminate-id2"));
         laminateLayingDirection.click();
 
@@ -54,16 +54,6 @@ public class LaminateCalcTest {
         //0 - со смещением на 1/3 длины, 1 - со смещением на 1/2 длины, 2 - с использованием отрезанного элемента
         methodForLayingLaminateDropdown.selectByIndex(2);
 
-//      "Минимальная длина обрезка" и "Отступ от стен" оставлены с неизменными значениями,
-//       так как выполнение следующих фрагментов кода приводит к вводу значения NaN.
-
-//        WebElement minimumCuttingLength = driver.findElement(By.id("min_length_segment_id"));
-//        minimumCuttingLength.clear();
-//        minimumCuttingLength.sendKeys("300");
-//        WebElement distanceFromWalls = driver.findElement(By.id("indent_walls_id"));
-//        distanceFromWalls.clear();
-//        distanceFromWalls.sendKeys("9");
-
         WebElement calculateButton = driver.findElement(By.id("btn_calculate"));
         calculateButton.click();
 
@@ -71,7 +61,6 @@ public class LaminateCalcTest {
         WebElement calculatePackAmount = driver.findElement(By.xpath("//*[contains(text(), 'Количество упаковок ламината')]"));
         Assert.assertEquals(calculatePlankAmount.getText(), "Требуемое количество плашек ламината: 52");
         Assert.assertEquals(calculatePackAmount.getText(), "Количество упаковок ламината: 6");
-
         Thread.sleep(2000);
     }
 
