@@ -23,7 +23,19 @@ public class ReadProperties {
         return properties.getProperty("browser");
     }
 
+    public static String username() {
+        return properties.getProperty("username");
+    }
+
+    public static String password() {
+        return properties.getProperty("password");
+    }
+
     public static boolean isHeadless() {
         return properties.getProperty("headless").equalsIgnoreCase("true");
+    }
+
+    public static int timeout() {
+        return Integer.parseInt(properties.getProperty("timeout"));
     }
 }
