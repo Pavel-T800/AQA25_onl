@@ -9,7 +9,6 @@ public class BaseTest {
     protected WebDriver driver;
     protected WaitsService waitsService;
 
-
     @BeforeMethod
     public void setup() {
         driver = new BrowserService().getDriver();
