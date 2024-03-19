@@ -4,9 +4,9 @@ import configuration.ReadProperties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -42,7 +42,7 @@ public class WaitsService {
         return wait.until(ExpectedConditions.elementToBeClickable(by));
     }
 
-    public boolean waitForElementInvisible(WebElement webElement) {
+    public Boolean waitForElementInvisible(WebElement webElement) {
         return wait.until(ExpectedConditions.invisibilityOf(webElement));
     }
 
@@ -66,20 +66,5 @@ public class WaitsService {
                 .ignoring(RuntimeException.class);
 
         return (Boolean) fluent.until(driver -> driver.findElements(by).size() == 0 ? true : new RuntimeException());
-    }
-
-    public boolean waitForInvisibility(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        return wait.until(ExpectedConditions.invisibilityOf(element));
-    }
-
-    public void waitForTextToBePresentInElementLocated(By locator, String text) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.textToBePresentInElementLocated(locator, text));
-    }
-
-    public void until(ExpectedCondition<Boolean> condition) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(condition);
     }
 }

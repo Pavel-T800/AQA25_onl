@@ -1,8 +1,11 @@
+package baseEntities;
+
+import configuration.ReadProperties;
 import core.BrowserService;
+import core.Listener;
 import core.WaitsService;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
-import java.time.Duration;
 
 @Listeners(Listener.class)
 public class BaseTest {
@@ -12,7 +15,9 @@ public class BaseTest {
     @BeforeMethod
     public void setup() {
         driver = new BrowserService().getDriver();
-        waitsService = new WaitsService(driver, Duration.ofSeconds(3));
+        waitsService = new WaitsService(driver);
+
+        driver.get(ReadProperties.getUrl());
     }
 
     @AfterMethod
